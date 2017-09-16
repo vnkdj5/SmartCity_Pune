@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_category">
+        <item>Electrical</item>
+        <item>Road</item>
+        <item>Water Supply</item>
+        <item>Noise Pollution</item>
+        <item>Garbage Collection</item>
+        <item>Street Light</item>
+    </string-array>
+    <string-array name="electrical">
+        <item>New Street Light(new Demand)</item>
+        <item>Making Street Light Functional</item>
+        <item>Preventing Electrocution(Shock)</item>
+        <item>Removal of Open Electric Box on Road</item>
+        <item>Removing Street Light Pole</item>
+        <item>Reparing Street Light Pole(Damaged/Fallen)</item>
+        <item>Preventing use of Street Lights at early Evening</item>
+        <item>Shutting Down Street Lights</item>
+        <item>Starting street lights during Night</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="garbage">
+        <item>Area around Garbage Bin dirty</item>
+        <item>Claenig  area around garbage bin dirty</item>
+        <item>Cleaning Garbage Bin overflow</item>
+        <item>Cleaning Litter on Road</item>
+        <item>Cleaning of P.S.C. Block</item>
+        <item>Collection Point not attended properly</item>
+        <item>Garbagr bin Overflowing</item>
+        <item>Garbage Lorry not covered</item>
+        <item>Garbage Not Collected fron house</item>
+        <item>Garbage not lifted from co-authorization collection point</item>
+        <item>Providing/Remmoving/Replacing Dustbins</item>
+        <item>Removal of Dead animal</item>
+        <item>Sweeping/cleaning the road</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="road">
+        <item>Cleaning Water logging on road</item>
+        <item>Parking line required</item>
+        <item>Removal of rank regulations on roads</item>
+        <item>Repair of foothpath</item>
+        <item>Repair/re-surfacing of roads/foothpaths</item>
+        <item>Repairing potholes on road</item>
+        <item>Sinage Required</item>
+        <item>Stop line at signal before Zebra Crossing</item>
+        <item>Zebra Crossing required</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="water">
+        <item>Change in timing</item>
+        <item>Change of water meter</item>
+        <item>Incorrect water meter bill</item>
+        <item>Low pressure to entire area</item>
+        <item>Providing water by tankers</item>
+        <item>Rectifying low water pressure</item>
+        <item>Removal of water meter</item>
+        <item>Repairing pipeline leakage</item>
+        <item>Repairing valve Leakage</item>
+        <item>No water supply</item>
+        <item>Solvinf water contamination problem</item>
+        <item>Stopping water misuse</item>
+        <item>Trating Turbid water problem</item>
+        <item>Unauthorized tapping of water connection</item>
+        <item>Use of booster pump</item>
+        <item>Water bill not received</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="noise">
+        <item>Playing off loud Speaker</item>
+        <item>Veru High Noise</item>
+        <item>Other</item>
+
+    </string-array>
+</resources>
