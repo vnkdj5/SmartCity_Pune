@@ -1,14 +1,19 @@
 package com.vnk.smartcity;
 
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,21 +55,45 @@ public class ComplaintsFragment extends Fragment {
     private String UPLOAD_URL =Config.SERVER_URL+"/upload.php";
 
     private String KEY_IMAGE = "image";
-    private String KEY_NAME = "name";
+    private String KEY_CATID = "cat_id";
+    private  String KEY_SUBCAT="subcategory";
+    private String KEY_ADDRESS="address";
+    private  String KEY_PIN="pincode";
+    private  String KEY_DESC="description";
+    private  String KEY_USERID="user_id";
+
+    private int categoryId,pincode;
+    private  String subcategory,address,description,user_email,complaintId;
 
     private ImageView imageView;
-   private  Button btnuploadComplaint,btnChooseImg;
+    private  Button btnuploadComplaint,btnChooseImg;
+    private EditText editTextaddress,editTextPincode,editTextDescription;
+    private Spinner spinner;
+    private Spinner subCatagorySpinner;
     public ComplaintsFragment() {
         // Required empty public constructor
+        categoryId=0;//By default first Item is displayed
 
     }
 ////===============Change static to dynan=mic data loading
-EditText editTextaddress;
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        final View v= inflater.inflate(R.layout.fragment_complaints, container, false);
-        Spinner spinner = (Spinner) v.findViewById(R.id.spinner);
+
+        //---------Declartion of resources in XML
+        spinner = (Spinner) v.findViewById(R.id.spinner);
+        subCatagorySpinner=(Spinner) v.findViewById(R.id.spinner2);
+        editTextaddress=(EditText) v.findViewById(R.id.editTextLocation);
+        editTextPincode=(EditText) v.findViewById(R.id.editTextPincode);
+        editTextDescription=(EditText) v.findViewById(R.id.editTextDescription);
+        imageView=(ImageView) v.findViewById(R.id.imageViewComplaint);
+        btnChooseImg=(Button) v.findViewById(R.id.buttonPhoto);
+        btnuploadComplaint =(Button) v.findViewById(R.id.submit_complaint_button);
+
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.main_category, android.R.layout.simple_spinner_item);
@@ -73,7 +102,9 @@ EditText editTextaddress;
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        final Spinner subCatagorySpinner=(Spinner) v.findViewById(R.id.spinner2);
+
+
+
         final ArrayAdapter<CharSequence> eleAdapter=ArrayAdapter.createFromResource(this.getActivity(),
                 R.array.electrical,android.R.layout.simple_spinner_item); eleAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         subCatagorySpinner.setAdapter(eleAdapter);
@@ -93,7 +124,7 @@ EditText editTextaddress;
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-
+                categoryId=pos; //Assign catagory id for DB Operation
                 switch (pos)
                 {
                     case 0:
@@ -129,15 +160,30 @@ EditText editTextaddress;
 
             }
         });
-        // Inflate the layout for this fragment
+/*
+        subCatagorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+            subcategory=subCatagorySpinner.getItemAtPosition(pos).toString(); //Assign subcatagory here
+            }
 
-        editTextaddress=(EditText) v.findViewById(R.id.editTextLocation);
-        imageView=(ImageView) v.findViewById(R.id.imageViewComplaint);
-        btnChooseImg=(Button) v.findViewById(R.id.buttonPhoto);
-        btnuploadComplaint =(Button) v.findViewById(R.id.submit_complaint_button);
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+       */ // Inflate the layout for this fragment
+
+
         btnuploadComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                address=editTextaddress.getText().toString();
+                pincode=Integer.parseInt(editTextPincode.getText().toString());
+                description=editTextDescription.getText().toString();
+                subcategory=subCatagorySpinner.getSelectedItem().toString();
+                SharedPreferences sp=getActivity().getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+                user_email=sp.getString(Config.USERNAME_SHARED_PREF, null);
                 uploadImage();
             }
         });
@@ -202,8 +248,10 @@ EditText editTextaddress;
                     public void onResponse(String s) {
                         //Disimissing the progress dialog
                         loading.dismiss();
+                        complaintId=s;
                         //Showing toast message of the response
-                        Toast.makeText(getActivity(), s , Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Submitted Successfully." , Toast.LENGTH_LONG).show();
+                        showSuccessDialog();
                     }
                 },
                 new Response.ErrorListener() {
@@ -230,7 +278,12 @@ EditText editTextaddress;
 
                 //Adding parameters
                 params.put(KEY_IMAGE, image);
-                params.put(KEY_NAME, "test");
+               params.put(KEY_CATID, String.valueOf(categoryId));
+                params.put(KEY_SUBCAT,subcategory);
+                params.put(KEY_ADDRESS,address);
+                params.put(KEY_PIN, String.valueOf(pincode));
+                params.put(KEY_DESC,description);
+                params.put(KEY_USERID,user_email);
 //Add other parameters here and create schema
                 //returning parameters
                 return params;
@@ -242,5 +295,23 @@ EditText editTextaddress;
 
         //Adding request to the queue
         requestQueue.add(stringRequest);
+    }
+
+    public void showSuccessDialog()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(
+                getActivity());
+        builder.setTitle("Submitted Successfully.");
+        builder.setMessage("Your Complaint Id: "+complaintId+" .");
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.content_frame, new FeedbackFragment(), "SubmitedFrags");
+                        ft.commit();
+                    }
+                });
+        builder.show();
     }
 }

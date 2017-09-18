@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -58,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:spinnerMode="dialog"
-                    android:background="@android:color/transparent"
+                    android:background="@android:drawable/btn_dropdown"
                     />
 
             <TextView
@@ -73,30 +74,67 @@
                 android:id="@+id/spinner2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:spinnerMode="dialog"/>
+                android:spinnerMode="dialog"
+                android:background="@android:drawable/btn_dropdown"
+                />
 
             <TextView
                 android:id="@+id/textViewLocLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Location"
+                android:text="Enter Address:"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editTextLocation"
+
+
+                <EditText
+                    android:id="@+id/editTextLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
+                    android:maxLines="3"
+                    android:gravity="top"
+                    android:background="@drawable/border"/>
+
+
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.63"
+                android:text="Enter Pincode:"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+
+            <EditText
+                android:id="@+id/editTextPincode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:ems="10"
-                android:lines="2"
-                android:inputType="textMultiLine" />
+                android:inputType="number"
+                android:background="@drawable/border"/>
 
             <Button
                 android:id="@+id/buttonPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="+ Add Image" />
+                android:text="+ Add Image"
+
+                />
+
+            <ImageView
+                android:id="@+id/imageViewComplaint"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxHeight="300dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                />
 
             <TextView
                 android:id="@+id/textViewDescLabel"
@@ -111,8 +149,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:gravity="top"
                 android:lines="3"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:maxLines="3"
+                android:background="@drawable/border"
+                />
 
             <Button
                 android:id="@+id/submit_complaint_button"
