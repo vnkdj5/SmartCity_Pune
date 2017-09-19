@@ -9,7 +9,7 @@ public class Config {
     //URL to our login.php file
     public static final String SERVER_URL = "http://192.168.43.208/smartcity";
     public static final String LOGIN_URL = SERVER_URL + "/login.php";
-
+    public static  final String REG_URL=SERVER_URL+"/regnew.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_USERNAME = "username";

@@ -3,7 +3,7 @@ package com.vnk.smartcity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.LoaderManager.LoaderCallbacks;
+import android.app.LoaderManager;
 import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
@@ -12,18 +12,16 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -50,31 +48,21 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 import static android.Manifest.permission.READ_CONTACTS;
 
-/**
- * A login screen that offers login via email/password.
- */
-public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
+public class RegisterActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
+   /*
+     * Keep track of the register task to ensure we can cancel it if requested.
      */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
+    private LoginActivity.UserLoginTask mAuthTask = null;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
-    private EditText mPasswordView;
+    private EditText mPasswordView,mMobileView,mNameView;
     private View mProgressView;
     private View mLoginFormView;
     //boolean variable to check user is logged in or not
@@ -85,33 +73,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        setContentView(R.layout.activity_register);
+        // Set up the register form.
+        mEmailView = (AutoCompleteTextView) findViewById(R.id.email_tv);
         populateAutoComplete();
 
-        mPasswordView = (EditText) findViewById(R.id.password);
+        mPasswordView = (EditText) findViewById(R.id.password_et);
+        mNameView=(EditText) findViewById(R.id.name_et);
+        mMobileView=(EditText) findViewById(R.id.mobile_et);
+
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptRegister();
                     return true;
                 }
                 return false;
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button mEmailRegisterInButton = (Button) findViewById(R.id.register_btn);
+        mEmailRegisterInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+                attemptRegister();
             }
         });
 
-        mLoginFormView = findViewById(R.id.login_form);
-        mProgressView = findViewById(R.id.login_progress);
+        mLoginFormView = findViewById(R.id.reg_form);
+        mProgressView = findViewById(R.id.register_progress);
     }
 
     @Override
@@ -126,11 +117,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         //If we will get true
         if (loggedIn && type.equals("user")) {
             //We will start the next activity
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);
         }
         if (loggedIn && type.equals("officer")) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
             startActivity(intent);
         }
     }
@@ -181,11 +172,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
 
     /**
-     * Attempts to sign in or register the account specified by the login form.
+     * Attempts to sign in or register the account specified by the register form.
      * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
+     * errors are presented and no actual register attempt is made.
      */
-    private void attemptLogin() {
+    private void attemptRegister() {
         if (mAuthTask != null) {
             return;
         }
@@ -193,11 +184,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Reset errors.
         mEmailView.setError(null);
         mPasswordView.setError(null);
+        mNameView.setError(null);
+        mNameView.setError(null);
 
-        // Store values at the time of the login attempt.
+        // Store values at the time of the register attempt.
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
-
+        String mobile=mMobileView.getText().toString();
+        String name=mNameView.getText().toString();
         boolean cancel = false;
         View focusView = null;
 
@@ -218,28 +212,36 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             focusView = mEmailView;
             cancel = true;
         }
-
+        if(TextUtils.isEmpty(name))
+        {
+         mNameView.setError("Name is Required.");
+            focusView = mNameView;
+            cancel = true;
+        }
+        if(TextUtils.isEmpty(mobile))
+        {
+            mMobileView.setError("Mobile Number is Required.");
+            focusView = mMobileView;
+            cancel = true;
+        }
         if (cancel) {
-            // There was an error; don't attempt login and focus the first
+            // There was an error; don't attempt register and focus the first
             // form field with an error.
             focusView.requestFocus();
         } else {
             // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
+            // perform the user register attempt.
             showProgress(true);
-            login(email, password);
+            register(name, password,email,mobile);
             // mAuthTask = new UserLoginTask(email, password);
             //  mAuthTask.execute((Void) null);
         }
     }
-public void register(View v)
-{
-    startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
-}
+
     //======================LOGIN CODE STARTS
 
-    private void login(final String username, final String password) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LOGIN_URL,
+    private void register(final String name, final String password,final  String email,final String mobile) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.REG_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -247,45 +249,45 @@ public void register(View v)
                         //If we are getting success from server
                         if (response.trim().equals("success")) {
                             //Creating a shared preference
-                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = RegisterActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
                             //Creating editor to store values to shared preferences
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
                             //Adding values to editor
                             editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(Config.USERNAME_SHARED_PREF, username);
+                            editor.putString(Config.USERNAME_SHARED_PREF, email);
                             editor.putString(Config.USER_TYPE, "user");
 
                             //Saving values to editor
                             editor.commit();
 
                             //Starting profile activity
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(intent);
-                            Toast.makeText(getApplicationContext(), "Login Success!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Registration Success!!", Toast.LENGTH_SHORT).show();
                         } else if (response.equals("officer_success")) {
                             //Creating a shared preference
-                            SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = RegisterActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
                             //Creating editor to store values to shared preferences
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
                             //Adding values to editor
                             editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(Config.USERNAME_SHARED_PREF, username);
+                            editor.putString(Config.USERNAME_SHARED_PREF, name);
                             editor.putString(Config.USER_TYPE, "officer");
 
                             //Saving values to editor
                             editor.commit();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             startActivity(intent);
-                            Toast.makeText(getApplicationContext(), "Login Success!!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "RRegistration Success!!", Toast.LENGTH_SHORT).show();
 
                         } else {
                             //If the server response is not success
                             //Displaying an error message on toast
-                            Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
                             mPasswordView.setError(getString(R.string.error_incorrect_password));
                             mPasswordView.requestFocus();
                         }
@@ -304,8 +306,10 @@ public void register(View v)
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put(Config.KEY_USERNAME, username);
+                params.put(Config.KEY_USERNAME, name);
                 params.put(Config.KEY_PASSWORD, password);
+                params.put("email",email);
+                params.put("mobile_no",mobile);
 
                 //returning parameter
                 return params;
@@ -317,7 +321,7 @@ public void register(View v)
                 15000,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
         requestQueue.add(stringRequest);
 
         //=================REQUEST CODE ENDS HERE
@@ -335,7 +339,7 @@ public void register(View v)
     }
 
     /**
-     * Shows the progress UI and hides the login form.
+     * Shows the progress UI and hides the register form.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
     private void showProgress(final boolean show) {
@@ -407,7 +411,7 @@ public void register(View v)
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(LoginActivity.this,
+                new ArrayAdapter<>(RegisterActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         mEmailView.setAdapter(adapter);
@@ -424,139 +428,4 @@ public void register(View v)
         int IS_PRIMARY = 1;
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String username;
-        private final String password;
-
-        UserLoginTask(String email, String password) {
-            username = email;
-            this.password = password;
-
-
-            //  Intent i=new Intent(LoginActivity.this,MainActivity.class );
-            //  startActivity(i);
-        }
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-
-
-            //=============== REQUEST CODE STARTS HERE ===========
-            //Creating a string request
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LOGIN_URL,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            //loading.dismiss();
-                            //If we are getting success from server
-                            if (response.trim().equals("success")) {
-                                //Creating a shared preference
-                                SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
-                                //Creating editor to store values to shared preferences
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                                //Adding values to editor
-                                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                editor.putString(Config.USERNAME_SHARED_PREF, username);
-                                editor.putString(Config.USER_TYPE, "student");
-
-                                //Saving values to editor
-                                editor.commit();
-
-                                //Starting profile activity
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "Login Success!!", Toast.LENGTH_SHORT).show();
-                            }
-                            if (response.equals("officer_success")) {
-                                //Creating a shared preference
-                                SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
-                                //Creating editor to store values to shared preferences
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                                //Adding values to editor
-                                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                editor.putString(Config.USERNAME_SHARED_PREF, username);
-                                editor.putString(Config.USER_TYPE, "officer");
-
-                                //Saving values to editor
-                                editor.commit();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "Login Success!!", Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                //If the server response is not success
-                                //Displaying an error message on toast
-                                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
-                                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                                mPasswordView.requestFocus();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //You can handle error here if you want
-                            Toast.makeText(getApplicationContext(), "Connection Failed.", Toast.LENGTH_SHORT).show();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    //Adding parameters to request
-                    params.put(Config.KEY_USERNAME, username);
-                    params.put(Config.KEY_PASSWORD, password);
-
-                    //returning parameter
-                    return params;
-                }
-            };
-
-            //Adding the string request to the queue
-            RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
-            requestQueue.add(stringRequest);
-
-            //=================REQUEST CODE ENDS HERE
-
-
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mAuthTask = null;
-            showProgress(false);
-        }
-    }
 }
-
