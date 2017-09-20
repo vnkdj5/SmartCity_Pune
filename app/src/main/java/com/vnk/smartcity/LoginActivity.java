@@ -58,15 +58,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Id to identity READ_CONTACTS permission request.
      */
+    private int backButtonCount=0;
     private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
      * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
+
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -254,7 +251,7 @@ public void register(View v)
 
                             //Adding values to editor
                             editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(Config.USERNAME_SHARED_PREF, username);
+                            editor.putString(Config.USER_EMAIL_SHARED_PREF, username);
                             editor.putString(Config.USER_TYPE, "user");
 
                             //Saving values to editor
@@ -273,7 +270,7 @@ public void register(View v)
 
                             //Adding values to editor
                             editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(Config.USERNAME_SHARED_PREF, username);
+                            editor.putString(Config.USER_EMAIL_SHARED_PREF, username);
                             editor.putString(Config.USER_TYPE, "officer");
 
                             //Saving values to editor
@@ -324,6 +321,22 @@ public void register(View v)
 
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        if(backButtonCount >= 1)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+        else
+        {
+            Toast.makeText(this, "Press the back button once again to close the application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
+    }
     private boolean isEmailValid(String email) {
 
         return email.contains("@");
@@ -463,7 +476,7 @@ public void register(View v)
 
                                 //Adding values to editor
                                 editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                editor.putString(Config.USERNAME_SHARED_PREF, username);
+                                editor.putString(Config.USER_EMAIL_SHARED_PREF, username);
                                 editor.putString(Config.USER_TYPE, "student");
 
                                 //Saving values to editor
@@ -483,7 +496,7 @@ public void register(View v)
 
                                 //Adding values to editor
                                 editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                editor.putString(Config.USERNAME_SHARED_PREF, username);
+                                editor.putString(Config.USER_EMAIL_SHARED_PREF, username);
                                 editor.putString(Config.USER_TYPE, "officer");
 
                                 //Saving values to editor

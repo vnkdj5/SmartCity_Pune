@@ -39,6 +39,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -247,50 +250,57 @@ public class RegisterActivity extends AppCompatActivity implements LoaderManager
                     public void onResponse(String response) {
                         showProgress(false);
                         //If we are getting success from server
-                        if (response.trim().equals("success")) {
-                            //Creating a shared preference
-                            SharedPreferences sharedPreferences = RegisterActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                        try {
+                            //converting response to json object
+                            JSONObject obj = new JSONObject(response);
 
-                            //Creating editor to store values to shared preferences
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            //if no error in response
+                            if (!obj.getBoolean("error")) {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
 
-                            //Adding values to editor
-                            editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(Config.USERNAME_SHARED_PREF, email);
-                            editor.putString(Config.USER_TYPE, "user");
+                                //getting the user from the response
+                                JSONObject userJson = obj.getJSONObject("user");
 
-                            //Saving values to editor
-                            editor.commit();
+                                //creating a new user object
+                                User user = new User(
+                                        userJson.getString("name"),
+                                        userJson.getString("mobile_no"),
+                                        userJson.getString("email"),
+                                        userJson.getString("address")
+                                );
 
-                            //Starting profile activity
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            Toast.makeText(getApplicationContext(), "Registration Success!!", Toast.LENGTH_SHORT).show();
-                        } else if (response.equals("officer_success")) {
-                            //Creating a shared preference
-                            SharedPreferences sharedPreferences = RegisterActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                                SharedPreferences sharedPreferences = RegisterActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
-                            //Creating editor to store values to shared preferences
-                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                //Creating editor to store values to shared preferences
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                            //Adding values to editor
-                            editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(Config.USERNAME_SHARED_PREF, name);
-                            editor.putString(Config.USER_TYPE, "officer");
+                                //Adding values to editor
+                                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+                                editor.putString(Config.USER_EMAIL_SHARED_PREF, user.getEmail());
+                                editor.putString(Config.KEY_USER_ADDRESS, user.getAddress());
+                                editor.putString(Config.KEY_USER_MOBILE, user.getMobile_no());
+                                editor.putString(Config.KEY_USER_NAME, user.getName());
+                                editor.putString(Config.USER_TYPE, "user");
 
-                            //Saving values to editor
-                            editor.commit();
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            Toast.makeText(getApplicationContext(), "RRegistration Success!!", Toast.LENGTH_SHORT).show();
+                                //Saving values to editor
+                                editor.commit();
 
-                        } else {
-                            //If the server response is not success
-                            //Displaying an error message on toast
-                            Toast.makeText(RegisterActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
-                            mPasswordView.setError(getString(R.string.error_incorrect_password));
-                            mPasswordView.requestFocus();
+                                //Starting profile activity
+                                Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                                startActivity(intent);
+
+
+                                //starting the profile activity
+                                finish();
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+
+
 
                     }
                 },

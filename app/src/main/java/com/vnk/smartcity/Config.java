@@ -26,7 +26,11 @@ public class Config {
     public static final String USER_TYPE = "usertype";
 
     //This would be used to store the username of current logged in user
-    public static final String USERNAME_SHARED_PREF = "username";
+    public static final String USER_EMAIL_SHARED_PREF = "username";
+
+    public static final String KEY_USER_NAME="name";
+    public static final String KEY_USER_ADDRESS="address";
+    public static final String KEY_USER_MOBILE="mobile";
 
     //We will use this to store the boolean in sharedpreference to track user is loggedin or not
     public static final String LOGGEDIN_SHARED_PREF = "loggedin";

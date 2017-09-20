@@ -1,22 +1,18 @@
 package com.vnk.smartcity;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,14 +36,6 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Demo Button Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -98,8 +86,10 @@ public class MainActivity extends AppCompatActivity
 
         //Adding Username in Navigation HEADER
         TextView  textViewUsername=(TextView) findViewById(R.id.tv_username);
+        TextView  textViewEmail=(TextView) findViewById(R.id.textViewEma);
         SharedPreferences sp=getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        textViewUsername.setText(sp.getString(Config.USERNAME_SHARED_PREF, null));
+        textViewUsername.setText(sp.getString(Config.KEY_USER_NAME, null));
+        textViewEmail.setText(sp.getString(Config.USER_EMAIL_SHARED_PREF,null));
         return true;
     }
 
@@ -168,9 +158,10 @@ public class MainActivity extends AppCompatActivity
                         editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
 
                         //Putting blank value to username
-                        editor.putString(Config.USERNAME_SHARED_PREF, "");
+                        editor.putString(Config.USER_EMAIL_SHARED_PREF, "");
                         editor.putString(Config.USER_TYPE, "");
-
+                        editor.clear();
+                        editor.apply();
                         //Saving the sharedpreferences
                         editor.commit();
 

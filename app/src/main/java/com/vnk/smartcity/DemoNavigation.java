@@ -141,7 +141,7 @@ public class DemoNavigation extends AppCompatActivity
                         editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
 
                         //Putting blank value to username
-                        editor.putString(Config.USERNAME_SHARED_PREF, "");
+                        editor.putString(Config.USER_EMAIL_SHARED_PREF, "");
                         editor.putString(Config.USER_TYPE, "");
 
                         //Saving the sharedpreferences

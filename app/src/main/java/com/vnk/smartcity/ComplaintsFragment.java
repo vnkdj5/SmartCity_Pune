@@ -183,7 +183,7 @@ public class ComplaintsFragment extends Fragment {
                 description=editTextDescription.getText().toString();
                 subcategory=subCatagorySpinner.getSelectedItem().toString();
                 SharedPreferences sp=getActivity().getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
-                user_email=sp.getString(Config.USERNAME_SHARED_PREF, null);
+                user_email=sp.getString(Config.USER_EMAIL_SHARED_PREF, null);
                 uploadImage();
             }
         });

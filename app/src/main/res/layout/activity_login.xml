@@ -46,8 +46,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:text="Smart City Pune"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -91,23 +90,28 @@
                 android:text="@string/action_sign_in"
                 android:textStyle="bold"
                 android:textColor="@color/colorbuttonText"/>
-<!---
+
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="New here?" />
--->
+                android:layout_marginTop="16dp"
+                android:fontFamily="casual"
+                android:gravity="center_horizontal"
+                android:text="New here?"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+
             <Button
                 android:id="@+id/register_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+
+                android:onClick="register"
                 android:text="@string/action_register"
-                android:textStyle="bold"
                 android:textColor="@color/colorbuttonText"
-                android:onClick="register"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
