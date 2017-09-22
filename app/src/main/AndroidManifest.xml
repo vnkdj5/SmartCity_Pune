@@ -36,9 +36,10 @@
             android:name=".DemoNavigation"
             android:label="Demo Navigation"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegisterActivity"
-            android:label="Registration"
-            ></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="Registration" />
+        <activity android:name=".complaints.ViewComplaintsActivity"></activity>
     </application>
 
 </manifest>

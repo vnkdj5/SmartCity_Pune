@@ -88,8 +88,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold"
-                android:textColor="@color/colorbuttonText"/>
+                android:textColor="@color/colorbuttonText"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -112,6 +112,15 @@
                 android:text="@string/action_register"
                 android:textColor="@color/colorbuttonText"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.16"
+                android:gravity="center_horizontal"
+                android:text="Made in ♥ with India"
+                android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

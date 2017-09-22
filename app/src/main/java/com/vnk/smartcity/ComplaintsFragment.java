@@ -51,6 +51,7 @@ public class ComplaintsFragment extends Fragment {
     private Bitmap bitmap;
 
     private int PICK_IMAGE_REQUEST = 1;
+    private int type_id_spinner;
 
     private String UPLOAD_URL =Config.SERVER_URL+"/upload.php";
 
@@ -75,13 +76,14 @@ public class ComplaintsFragment extends Fragment {
         categoryId=0;//By default first Item is displayed
 
     }
-////===============Change static to dynan=mic data loading
+
 
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        type_id_spinner = this.getArguments().getInt("spinner_id");
        final View v= inflater.inflate(R.layout.fragment_complaints, container, false);
 
         //---------Declartion of resources in XML
@@ -102,7 +104,7 @@ public class ComplaintsFragment extends Fragment {
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-
+        spinner.setSelection(type_id_spinner);
 
 
         final ArrayAdapter<CharSequence> eleAdapter=ArrayAdapter.createFromResource(this.getActivity(),

@@ -1,0 +1,110 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.vnk.smartcity.HomeFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="131dp"
+                android:elevation="30dp"
+                app:srcCompat="@mipmap/logo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonComplaint"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+
+                    android:gravity="center_vertical"
+                    android:text="Report Complaint" />
+
+                <Button
+                    android:id="@+id/buttonGarbage"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Garbage    Issues" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonRoad"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Road Related Issues" />
+
+                <Button
+                    android:id="@+id/buttonWater"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Water Supply\nIssues" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonViewComplaints"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="View Compalaints" />
+
+                <Button
+                    android:id="@+id/buttonCheckstatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Check Status" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

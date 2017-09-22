@@ -10,6 +10,7 @@ public class Config {
     public static final String SERVER_URL = "http://192.168.43.208/smartcity";
     public static final String LOGIN_URL = SERVER_URL + "/login.php";
     public static  final String REG_URL=SERVER_URL+"/regnew.php";
+    public static final String GET_COMPLAINTS_URL = SERVER_URL + "/get_complaints.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_USERNAME = "username";
@@ -34,4 +35,16 @@ public class Config {
 
     //We will use this to store the boolean in sharedpreference to track user is loggedin or not
     public static final String LOGGEDIN_SHARED_PREF = "loggedin";
+
+
+    //-----------------COMPALINSTS TAGS
+    public static final String TAG_IMAGE_URL = "image_url";
+    public static final String TAG_CAT_ID = "category";
+    public static final String TAG_SUB_CAT = "subcategory";
+    public static final String TAG_COMPLAINT_ID = "complaint_id";
+    public static final String TAG_ADDRESS = "address";
+    public static final String TAG_DESCRIPTION = "description";
+    public static final String TAG_STATUS = "status";
+    public static final String TAG_SUBMIT_DATE = "submit_date";
+
 }
