@@ -34,21 +34,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@color/color1"
                     android:drawableLeft="@drawable/ic_menu_camera"
                     android:drawablePadding="10dp"
-
                     android:gravity="center_vertical"
-                    android:text="Report Complaint" />
+                    android:text="Report\nComplaint" />
 
                 <Button
                     android:id="@+id/buttonGarbage"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@color/color2"
                     android:drawableLeft="@drawable/ic_menu_camera"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="Garbage    Issues" />
+                    android:text="Garbage\nIssues" />
             </LinearLayout>
 
             <LinearLayout
@@ -62,16 +63,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@color/color3"
                     android:drawableLeft="@drawable/ic_menu_camera"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="Road Related Issues" />
+                    android:text="Road Related\nIssues" />
 
                 <Button
                     android:id="@+id/buttonWater"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@color/color4"
                     android:drawableLeft="@drawable/ic_menu_camera"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
@@ -89,20 +92,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@color/color5"
                     android:drawableLeft="@drawable/ic_menu_camera"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="View Compalaints" />
+                    android:text="View\nCompalaints" />
 
                 <Button
                     android:id="@+id/buttonCheckstatus"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
+                    android:background="@color/color1"
                     android:drawableLeft="@drawable/ic_menu_camera"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="Check Status" />
+                    android:text="Check Complaint\nStatus" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

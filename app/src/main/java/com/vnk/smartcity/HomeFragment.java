@@ -37,12 +37,17 @@ public class HomeFragment extends Fragment {
         btnRoad = (Button) v.findViewById(R.id.buttonRoad);
         btnViewComplaints = (Button) v.findViewById(R.id.buttonViewComplaints);
 
+
         btnComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                Bundle bundle = new Bundle();
+                bundle.putInt("spinner_id", 0);
                 Fragment fragment = new ComplaintsFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                fragment.setArguments(bundle);
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack("complaintsfrag");
                 ft.replace(R.id.content_frame, fragment);
                 ft.commit();
             }
@@ -55,7 +60,8 @@ public class HomeFragment extends Fragment {
                 bundle.putInt("spinner_id", 1);
                 Fragment fragment = new ComplaintsFragment();
                 fragment.setArguments(bundle);
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack("complaintsRoad");
                 ft.replace(R.id.content_frame, fragment);
                 ft.commit();
             }
@@ -67,7 +73,8 @@ public class HomeFragment extends Fragment {
                 bundle.putInt("spinner_id", 2);
                 Fragment fragment = new ComplaintsFragment();
                 fragment.setArguments(bundle);
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack("complaintsWater");
                 ft.replace(R.id.content_frame, fragment);
                 ft.commit();
             }
@@ -79,7 +86,8 @@ public class HomeFragment extends Fragment {
                 bundle.putInt("spinner_id", 4);
                 Fragment fragment = new ComplaintsFragment();
                 fragment.setArguments(bundle);
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack("complaintsGarbage");
                 ft.replace(R.id.content_frame, fragment);
                 ft.commit();
             }
@@ -100,4 +108,5 @@ public class HomeFragment extends Fragment {
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Home");
     }
+
 }

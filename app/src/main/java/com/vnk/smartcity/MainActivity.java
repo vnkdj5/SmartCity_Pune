@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-          //  super.onBackPressed();
-            logout();
+            super.onBackPressed();
+
         }
     }
 
@@ -71,6 +71,18 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+
+        //Adding Username in Navigation HEADER
+        TextView textViewUsername = (TextView) findViewById(R.id.tv_username);
+        TextView textViewEmail = (TextView) findViewById(R.id.textViewEma);
+        SharedPreferences sp = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+        textViewUsername.setText(sp.getString(Config.KEY_USER_NAME, null));
+        String emailid = sp.getString(Config.USER_EMAIL_SHARED_PREF, null);
+        textViewEmail.setText(emailid);
+
+
         TextDrawable drawable = TextDrawable.builder()
                 .beginConfig()
                 .withBorder(5)
@@ -78,18 +90,11 @@ public class MainActivity extends AppCompatActivity
                 .width(100)  // width in px
                 .height(100) // height in px
                 .endConfig()
-                .buildRound("V", (getResources().getColor(R.color.colorPrimary))); ///Dj update here to take dynamic letter
+                .buildRound(String.valueOf(emailid.charAt(0)), (getResources().getColor(R.color.colorPrimary))); ///Dj update here to take dynamic letter
 
 
         ImageView image = (ImageView) findViewById(imageView);
         image.setImageDrawable(drawable);
-
-        //Adding Username in Navigation HEADER
-        TextView  textViewUsername=(TextView) findViewById(R.id.tv_username);
-        TextView  textViewEmail=(TextView) findViewById(R.id.textViewEma);
-        SharedPreferences sp=getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
-        textViewUsername.setText(sp.getString(Config.KEY_USER_NAME, null));
-        textViewEmail.setText(sp.getString(Config.USER_EMAIL_SHARED_PREF,null));
         return true;
     }
 
@@ -115,7 +120,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_feedback) {
             fragment=new FeedbackFragment();
         } else if (id == R.id.nav_slideshow) {
-            startActivity(new Intent(MainActivity.this, DemoNavigation.class));
+            startActivity(new Intent(MainActivity.this, OfficerMainActivity.class));
 
         } else if (id == R.id.nav_schemes) {
 
@@ -128,7 +133,9 @@ public class MainActivity extends AppCompatActivity
             Bundle bundle = new Bundle();
             bundle.putInt("spinner_id", 0);
             fragment.setArguments(bundle);
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction()
+                    .add(fragment, "frag1")
+                    .addToBackStack("frag");
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }

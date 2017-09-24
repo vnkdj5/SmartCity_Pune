@@ -7,7 +7,7 @@ package com.vnk.smartcity;
 public class Config {
 
     //URL to our login.php file
-    public static final String SERVER_URL = "http://192.168.43.208/smartcity";
+    public static final String SERVER_URL = "http://192.168.16.38/smartcity";
     public static final String LOGIN_URL = SERVER_URL + "/login.php";
     public static  final String REG_URL=SERVER_URL+"/regnew.php";
     public static final String GET_COMPLAINTS_URL = SERVER_URL + "/get_complaints.php";

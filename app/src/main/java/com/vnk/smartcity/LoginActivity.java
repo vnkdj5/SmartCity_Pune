@@ -55,12 +55,11 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+    private static final int REQUEST_READ_CONTACTS = 0;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
     private int backButtonCount=0;
-    private static final int REQUEST_READ_CONTACTS = 0;
-
     /**
      * A dummy authentication store containing known user names and passwords.
 
@@ -127,7 +126,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             startActivity(intent);
         }
         if (loggedIn && type.equals("officer")) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            Intent intent = new Intent(LoginActivity.this, OfficerMainActivity.class);
             startActivity(intent);
         }
     }
@@ -275,7 +274,7 @@ public void register(View v)
 
                             //Saving values to editor
                             editor.commit();
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, OfficerMainActivity.class);
                             startActivity(intent);
                             Toast.makeText(getApplicationContext(), "Login Success!!", Toast.LENGTH_SHORT).show();
 
@@ -457,89 +456,6 @@ public void register(View v)
 
         @Override
         protected Boolean doInBackground(Void... params) {
-
-
-            //=============== REQUEST CODE STARTS HERE ===========
-            //Creating a string request
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.LOGIN_URL,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            //loading.dismiss();
-                            //If we are getting success from server
-                            if (response.trim().equals("success")) {
-                                //Creating a shared preference
-                                SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
-                                //Creating editor to store values to shared preferences
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                                //Adding values to editor
-                                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                editor.putString(Config.USER_EMAIL_SHARED_PREF, username);
-                                editor.putString(Config.USER_TYPE, "student");
-
-                                //Saving values to editor
-                                editor.commit();
-
-                                //Starting profile activity
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "Login Success!!", Toast.LENGTH_SHORT).show();
-                            }
-                            if (response.equals("officer_success")) {
-                                //Creating a shared preference
-                                SharedPreferences sharedPreferences = LoginActivity.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-
-                                //Creating editor to store values to shared preferences
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                                //Adding values to editor
-                                editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                                editor.putString(Config.USER_EMAIL_SHARED_PREF, username);
-                                editor.putString(Config.USER_TYPE, "officer");
-
-                                //Saving values to editor
-                                editor.commit();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                Toast.makeText(getApplicationContext(), "Login Success!!", Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                //If the server response is not success
-                                //Displaying an error message on toast
-                                Toast.makeText(LoginActivity.this, "Invalid username or password", Toast.LENGTH_LONG).show();
-                                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                                mPasswordView.requestFocus();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            //You can handle error here if you want
-                            Toast.makeText(getApplicationContext(), "Connection Failed.", Toast.LENGTH_SHORT).show();
-                        }
-                    }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    //Adding parameters to request
-                    params.put(Config.KEY_USERNAME, username);
-                    params.put(Config.KEY_PASSWORD, password);
-
-                    //returning parameter
-                    return params;
-                }
-            };
-
-            //Adding the string request to the queue
-            RequestQueue requestQueue = Volley.newRequestQueue(LoginActivity.this);
-            requestQueue.add(stringRequest);
-
-            //=================REQUEST CODE ENDS HERE
-
 
             try {
                 // Simulate network access.

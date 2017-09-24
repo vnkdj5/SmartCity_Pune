@@ -1,11 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.vnk.smartcity.ComplaintsFragment">
 
     <!-- Login progress -->
@@ -22,9 +24,9 @@
             android:id="@+id/complaint_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:orientation="vertical"
             android:weightSum="1"
-            android:layout_marginTop="10dp"
             >
 
            <!---
@@ -58,8 +60,8 @@
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:spinnerMode="dialog"
                     android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dialog"
                     />
 
             <TextView
@@ -74,8 +76,8 @@
                 android:id="@+id/spinner2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:spinnerMode="dialog"
                 android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dialog"
                 />
 
             <TextView
@@ -93,12 +95,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/border"
                     android:ems="10"
+                    android:gravity="top"
                     android:inputType="textMultiLine"
                     android:lines="3"
-                    android:maxLines="3"
-                    android:gravity="top"
-                    android:background="@drawable/border"/>
+                    android:maxLines="3" />
 
 
             <TextView
@@ -114,9 +116,9 @@
                 android:id="@+id/editTextPincode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
                 android:ems="10"
-                android:inputType="number"
-                android:background="@drawable/border"/>
+                android:inputType="number" />
 
             <Button
                 android:id="@+id/buttonPhoto"
@@ -131,8 +133,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:maxHeight="300dp"
                 android:adjustViewBounds="true"
+                android:maxHeight="300dp"
                 android:scaleType="fitCenter"
                 />
 
@@ -148,12 +150,12 @@
                 android:id="@+id/editTextDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/border"
                 android:ems="10"
                 android:gravity="top"
-                android:lines="3"
                 android:inputType="textMultiLine"
+                android:lines="3"
                 android:maxLines="3"
-                android:background="@drawable/border"
                 />
 
             <Button
@@ -163,8 +165,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Submit Complaint"
-                android:textStyle="bold"
-                android:textColor="@color/colorbuttonText"/>
+                android:textColor="@color/colorbuttonText"
+                android:textStyle="bold" />
             <!---
                         <TextView
                             android:id="@+id/textView2"
