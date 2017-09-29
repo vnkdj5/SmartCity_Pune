@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
     tools:context="com.vnk.smartcity.HomeFragment">
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/cardview_dark_background"
         android:elevation="1dp">
 
         <LinearLayout
@@ -20,6 +22,7 @@
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="131dp"
+                android:background="@color/cardview_dark_background"
                 android:elevation="30dp"
                 app:srcCompat="@mipmap/logo" />
 
@@ -108,6 +111,35 @@
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:text="Check Complaint\nStatus" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonEmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@color/color2"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Emergency\nContacts" />
+
+                <Button
+                    android:id="@+id/buttonPlaces"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@color/color3"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Government\nOffices" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

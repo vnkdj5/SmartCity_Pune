@@ -7,10 +7,14 @@ package com.vnk.smartcity;
 public class Config {
 
     //URL to our login.php file
-    public static final String SERVER_URL = "http://192.168.16.38/smartcity";
+    public static final String SERVER_URL = "http://192.168.43.208/smartcity";
     public static final String LOGIN_URL = SERVER_URL + "/login.php";
     public static  final String REG_URL=SERVER_URL+"/regnew.php";
     public static final String GET_COMPLAINTS_URL = SERVER_URL + "/get_complaints.php";
+    public static final String GET_COMPLAINTS_OFFICER_URL = SERVER_URL + "/get_complaints_officer.php";
+    public static final String UPDATE_STATUS_URL = SERVER_URL + "/update_status.php";
+    public static final String GET_COMPLAINTS_IDS = SERVER_URL + "/get_complaint_ids.php";
+    public static final String GET_COMPLAINT = SERVER_URL + "/get_complaint.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_USERNAME = "username";

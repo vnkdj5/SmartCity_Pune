@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.vnk.smartcity.officer.UpdateComMainFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Complaint to Update"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:spinnerMode="dropdown" />
+
+
+            <FrameLayout
+                android:id="@+id/frame_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible">
+
+                <include layout="@layout/complaint_list" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="10dp"
+                    android:text="Status"
+                    android:textSize="@dimen/textsizerow" />
+
+                <Spinner
+                    android:id="@+id/spinnerSTATUS11"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+
+                    android:background="@android:drawable/btn_dropdown"
+                    android:minWidth="200dp"
+                    android:spinnerMode="dialog" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/buttonUpStatus1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update Status" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

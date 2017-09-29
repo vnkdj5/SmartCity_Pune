@@ -87,14 +87,14 @@ public class ComplaintsFragment extends Fragment {
        final View v= inflater.inflate(R.layout.fragment_complaints, container, false);
 
         //---------Declartion of resources in XML
-        spinner = (Spinner) v.findViewById(R.id.spinner);
-        subCatagorySpinner=(Spinner) v.findViewById(R.id.spinner2);
-        editTextaddress=(EditText) v.findViewById(R.id.editTextLocation);
-        editTextPincode=(EditText) v.findViewById(R.id.editTextPincode);
-        editTextDescription=(EditText) v.findViewById(R.id.editTextDescription);
-        imageView=(ImageView) v.findViewById(R.id.imageViewComplaint);
-        btnChooseImg=(Button) v.findViewById(R.id.buttonPhoto);
-        btnuploadComplaint =(Button) v.findViewById(R.id.submit_complaint_button);
+        spinner = v.findViewById(R.id.spinner);
+        subCatagorySpinner = v.findViewById(R.id.spinner2);
+        editTextaddress = v.findViewById(R.id.editTextLocation);
+        editTextPincode = v.findViewById(R.id.editTextPincode);
+        editTextDescription = v.findViewById(R.id.editTextDescription);
+        imageView = v.findViewById(R.id.imageViewComplaint);
+        btnChooseImg = v.findViewById(R.id.buttonPhoto);
+        btnuploadComplaint = v.findViewById(R.id.submit_complaint_button);
 
 // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getActivity(),
@@ -310,7 +310,7 @@ public class ComplaintsFragment extends Fragment {
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         final FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.replace(R.id.content_frame, new FeedbackFragment(), "SubmitedFrags");
+                        ft.replace(R.id.content_frame, new HomeFragment(), "SubmitedFrags");
                         ft.commit();
                     }
                 });

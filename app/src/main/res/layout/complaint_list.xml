@@ -8,10 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
         app:cardBackgroundColor="@android:color/white"
         app:cardCornerRadius="8dp"
-        app:cardElevation="10dp"
-
+        app:cardElevation="4dp"
         >
 
         <LinearLayout

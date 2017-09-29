@@ -16,11 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.vnk.smartcity.officer.OfficerHomeFragment;
+import com.vnk.smartcity.officer.UpdateComMainFragment;
+import com.vnk.smartcity.officer.ViewComplaintsOfficerFragment;
 
 import static com.vnk.smartcity.R.id.imageView;
 
@@ -44,6 +47,13 @@ public class OfficerMainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view1);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //add this line to display menu1 when the activity is loaded
+        Fragment fragment = new OfficerHomeFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content_officer, fragment);
+        ft.commit();
+
     }
 
     @Override
@@ -105,12 +115,19 @@ public class OfficerMainActivity extends AppCompatActivity
         if (id == R.id.n_home) {
             fragment = new OfficerHomeFragment();
         } else if (id == R.id.n_complaints) {
+            fragment = new ViewComplaintsOfficerFragment();
 
         } else if (id == R.id.n_update_status) {
+            fragment = new UpdateComMainFragment();
 
         } else if (id == R.id.n_profile) {
 
         } else if (id == R.id.n_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Smart City Pune.\n App to easily solve basic PMC problems.\nLink: http://github.com/vnkdj5");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
         } else if (id == R.id.n_logout) {
             logout();
@@ -142,6 +159,13 @@ public class OfficerMainActivity extends AppCompatActivity
         return true;
     }
 
+    public void shareApp(View v) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Smart City Pune.\n App to easily solve basic PMC problems.\nLink: http://github.com/vnkdj5");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
     //Logout function
     public void logout() {
         //Creating an alert dialog to confirm logout

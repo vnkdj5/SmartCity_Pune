@@ -1,13 +1,93 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
     tools:context="com.vnk.smartcity.officer.OfficerHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:elevation="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="131dp"
+                android:elevation="30dp"
+                app:srcCompat="@mipmap/logo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonComplaintOff"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/color1"
+                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+
+                    android:text="View Complaint" />
+
+                <Button
+                    android:id="@+id/buttonUpdateOff"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/color2"
+                    android:drawableLeft="@drawable/ic_menu_manage"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+
+                    android:text="Update Status" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonOff1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/color3"
+                    android:drawableLeft="@drawable/ic_user"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:text="Edit Profile" />
+
+                <Button
+                    android:id="@+id/buttonOff2"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@color/color4"
+                    android:drawableLeft="@drawable/ic_menu_share"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:onClick="shareApp"
+                    android:text="Share App" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".OfficerMainActivity"
-            android:label="Demo Navigation"
+            android:label="Officer Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegisterActivity"

@@ -1,10 +1,12 @@
 package com.vnk.smartcity.complaints;
 
+import java.io.Serializable;
+
 /**
  * Created by root on 21/9/17.
  */
 
-public class Complaint {
+public class Complaint implements Serializable {
     int cat_id;
     String subCategory, complaintId, imageurl, address, description, pincode, status, submitDate;
 

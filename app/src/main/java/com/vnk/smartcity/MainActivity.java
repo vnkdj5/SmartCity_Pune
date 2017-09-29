@@ -125,6 +125,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_schemes) {
 
         } else if (id == R.id.nav_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Smart City Pune.\n App to easily solve basic PMC problems.\nLink: http://github.com/vnkdj5");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
 
         } else if (id == R.id.nav_logout) {
             logout();

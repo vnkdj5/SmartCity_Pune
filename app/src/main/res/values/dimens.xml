@@ -8,7 +8,7 @@
     <dimen name="app_bar_height">180dp</dimen>
 
     <dimen name="text_margin">16dp</dimen>
-
+    <dimen name="textsizerow">14sp</dimen>
 
     <dimen name="textsize14">14.0sp</dimen>
     <dimen name="textsize15">15.0sp</dimen>

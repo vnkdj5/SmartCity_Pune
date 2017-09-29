@@ -24,6 +24,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
     private ImageLoader imageLoader;
     private Context context;
 
+
     public CardAdapter(List<Complaint> complaints, Context context) {
         super();
         //Getting all the superheroes
@@ -76,14 +77,15 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            imageView = (NetworkImageView) itemView.findViewById(R.id.imageViewCMP);
-            textViewComplId = (TextView) itemView.findViewById(R.id.textViewComId);
-            textViewCategory = (TextView) itemView.findViewById(R.id.textViewCat);
-            textViewTitle = (TextView) itemView.findViewById(R.id.textViewTitle);
-            textViewDescription = (TextView) itemView.findViewById(R.id.textViewDESCR);
-            textViewAddress = (TextView) itemView.findViewById(R.id.textViewADDRESS);
-            textViewStatus = (TextView) itemView.findViewById(R.id.textViewSTATUS);
-            textViewSubmitDate = (TextView) itemView.findViewById(R.id.textViewSubmitDate);
+            imageView = itemView.findViewById(R.id.imageViewCMP);
+            textViewComplId = itemView.findViewById(R.id.textViewComId);
+            textViewCategory = itemView.findViewById(R.id.textViewCat);
+            textViewTitle = itemView.findViewById(R.id.textViewTitle);
+            textViewDescription = itemView.findViewById(R.id.textViewDESCR);
+            textViewAddress = itemView.findViewById(R.id.textViewADDRESS);
+            textViewStatus = itemView.findViewById(R.id.textViewSTATUS);
+            textViewSubmitDate = itemView.findViewById(R.id.textViewSubmitDate);
         }
     }
+
 }
