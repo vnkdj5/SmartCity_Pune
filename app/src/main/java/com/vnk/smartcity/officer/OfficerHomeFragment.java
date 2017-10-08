@@ -17,7 +17,7 @@ import com.vnk.smartcity.R;
  */
 public class OfficerHomeFragment extends Fragment {
 
-    private Button btnComplaints, btnUpdateComplaints;
+    private Button btnComplaints, btnUpdateComplaints, btnUpdateProfile;
     public OfficerHomeFragment() {
         // Required empty public constructor
     }
@@ -32,7 +32,7 @@ public class OfficerHomeFragment extends Fragment {
 
         btnComplaints = v.findViewById(R.id.buttonComplaintOff);
         btnUpdateComplaints = v.findViewById(R.id.buttonUpdateOff);
-
+        btnUpdateProfile = v.findViewById(R.id.buttonOff1);
         btnComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +58,17 @@ public class OfficerHomeFragment extends Fragment {
             }
         });
 
+        btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new ViewInfoFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(fragment, "frag2")
+                        .addToBackStack("frag2");
+                ft.replace(R.id.content_officer, fragment);
+                ft.commit();
+            }
+        });
         return v;
     }
 

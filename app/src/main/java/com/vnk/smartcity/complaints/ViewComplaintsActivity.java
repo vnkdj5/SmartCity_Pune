@@ -1,15 +1,20 @@
 package com.vnk.smartcity.complaints;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.vnk.smartcity.Config;
 import com.vnk.smartcity.R;
@@ -19,7 +24,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ViewComplaintsActivity extends AppCompatActivity {
 
@@ -55,23 +62,43 @@ public class ViewComplaintsActivity extends AppCompatActivity {
         final ProgressDialog loading = ProgressDialog.show(this, "Loading Data", "Please wait...", false, false);
 
         //Creating a json array request
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Config.GET_COMPLAINTS_URL,
-                new Response.Listener<JSONArray>() {
+        StringRequest jsonArrayRequest = new StringRequest(Request.Method.POST, Config.GET_COMPLAINTS_URL,
+                new Response.Listener<String>() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(String response) {
                         //Dismissing progress dialog
                         loading.dismiss();
-
+                        JSONArray arrayResponse = null;
+                        try {
+                            arrayResponse = new JSONArray(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         //calling method to parse json array
-                        parseData(response);
+                        parseData(arrayResponse);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        loading.dismiss();
+                        Log.d("ViewComplaints", error.toString());
                     }
-                });
+                }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                //Adding parameters to request
+                SharedPreferences sp = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+
+                String user_emaill = sp.getString(Config.USER_EMAIL_SHARED_PREF, null);
+                params.put("user_email", user_emaill);
+
+
+                //returning parameter
+                return params;
+            }
+        };
 
         //Creating request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);

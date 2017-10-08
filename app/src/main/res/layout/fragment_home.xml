@@ -102,7 +102,7 @@
                     android:text="View\nCompalaints" />
 
                 <Button
-                    android:id="@+id/buttonCheckstatus"
+                    android:id="@+id/buttonUpdateProfile"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -110,7 +110,7 @@
                     android:drawableLeft="@drawable/ic_menu_camera"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
-                    android:text="Check Complaint\nStatus" />
+                    android:text="Update User Profile" />
             </LinearLayout>
 
             <LinearLayout

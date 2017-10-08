@@ -20,7 +20,7 @@ import com.vnk.smartcity.complaints.ViewComplaintsActivity;
 public class HomeFragment extends Fragment {
 
 
-    Button btnComplaint, btnWater, btnGarbage, btnRoad, btnViewComplaints;
+    Button btnComplaint, btnWater, btnGarbage, btnRoad, btnViewComplaints, btnUpdateProfile;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -31,12 +31,12 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_home, container, false);
         // Inflate the layout for this fragment
-        btnComplaint = (Button) v.findViewById(R.id.buttonComplaint);
-        btnWater = (Button) v.findViewById(R.id.buttonWater);
-        btnGarbage = (Button) v.findViewById(R.id.buttonGarbage);
-        btnRoad = (Button) v.findViewById(R.id.buttonRoad);
-        btnViewComplaints = (Button) v.findViewById(R.id.buttonViewComplaints);
-
+        btnComplaint = v.findViewById(R.id.buttonComplaint);
+        btnWater = v.findViewById(R.id.buttonWater);
+        btnGarbage = v.findViewById(R.id.buttonGarbage);
+        btnRoad = v.findViewById(R.id.buttonRoad);
+        btnViewComplaints = v.findViewById(R.id.buttonViewComplaints);
+        btnUpdateProfile = v.findViewById(R.id.buttonUpdateProfile);
 
         btnComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +99,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        btnUpdateProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new EditProfileFragment();
+
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack("EditProfile");
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
+            }
+        });
         return v;
     }
 

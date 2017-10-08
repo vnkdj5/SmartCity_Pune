@@ -24,6 +24,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.vnk.smartcity.officer.OfficerHomeFragment;
 import com.vnk.smartcity.officer.UpdateComMainFragment;
 import com.vnk.smartcity.officer.ViewComplaintsOfficerFragment;
+import com.vnk.smartcity.officer.ViewInfoFragment;
 
 import static com.vnk.smartcity.R.id.imageView;
 
@@ -121,6 +122,7 @@ public class OfficerMainActivity extends AppCompatActivity
             fragment = new UpdateComMainFragment();
 
         } else if (id == R.id.n_profile) {
+            fragment = new ViewInfoFragment();
 
         } else if (id == R.id.n_share) {
             Intent sendIntent = new Intent();

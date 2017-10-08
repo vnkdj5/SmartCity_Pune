@@ -13,8 +13,12 @@ public class Config {
     public static final String GET_COMPLAINTS_URL = SERVER_URL + "/get_complaints.php";
     public static final String GET_COMPLAINTS_OFFICER_URL = SERVER_URL + "/get_complaints_officer.php";
     public static final String UPDATE_STATUS_URL = SERVER_URL + "/update_status.php";
+    public static final String UPDATE_OFFICER_URL = SERVER_URL + "/update_officer.php";
+    public static final String UPDATE_USER_URL = SERVER_URL + "/update_user.php";
     public static final String GET_COMPLAINTS_IDS = SERVER_URL + "/get_complaint_ids.php";
     public static final String GET_COMPLAINT = SERVER_URL + "/get_complaint.php";
+    public static final String GET_OFFICER = SERVER_URL + "/get_officer.php";
+    public static final String GET_USER = SERVER_URL + "/get_user.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_USERNAME = "username";

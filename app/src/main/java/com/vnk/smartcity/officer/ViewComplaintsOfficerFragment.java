@@ -51,7 +51,6 @@ public class ViewComplaintsOfficerFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
     private String officer_email;
-
     public ViewComplaintsOfficerFragment() {
         // Required empty public constructor
     }

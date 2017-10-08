@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.vnk.smartcity.complaints.ViewComplaintsActivity;
 
 import static com.vnk.smartcity.R.id.imageView;
 
@@ -117,12 +118,12 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_complaints) {
             fragment=new ComplaintsFragment();
-        } else if (id == R.id.nav_feedback) {
-            fragment=new FeedbackFragment();
-        } else if (id == R.id.nav_slideshow) {
-            startActivity(new Intent(MainActivity.this, OfficerMainActivity.class));
+        } else if (id == R.id.nav_u_view_compl) {
+            startActivity(new Intent(MainActivity.this, ViewComplaintsActivity.class));
+        } else if (id == R.id.nav_user_home) {
+            fragment = new HomeFragment();
 
-        } else if (id == R.id.nav_schemes) {
+        } else if (id == R.id.nav_emergency) {
 
         } else if (id == R.id.nav_share) {
             Intent sendIntent = new Intent();
