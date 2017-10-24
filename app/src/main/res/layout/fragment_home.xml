@@ -21,10 +21,10 @@
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
-                android:layout_height="131dp"
+                android:layout_height="220dp"
                 android:background="@color/cardview_dark_background"
                 android:elevation="30dp"
-                app:srcCompat="@mipmap/logo" />
+                app:srcCompat="@mipmap/banner2" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:background="@color/color1"
-                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawableLeft="@drawable/ic_menu_settings"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:text="Report\nComplaint" />
@@ -50,6 +50,7 @@
                     android:layout_weight="1"
                     android:background="@color/color2"
                     android:drawableLeft="@drawable/ic_menu_camera"
+
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:text="Garbage\nIssues" />
@@ -107,7 +108,7 @@
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:background="@color/color1"
-                    android:drawableLeft="@drawable/ic_menu_camera"
+                    android:drawableLeft="@drawable/ic_user"
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:text="Update User Profile" />

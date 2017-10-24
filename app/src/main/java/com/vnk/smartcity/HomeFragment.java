@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.vnk.smartcity.complaints.ViewComplaintsActivity;
+import com.vnk.smartcity.govtoffices.GovtOfficeActivity;
 
 
 /**
@@ -20,7 +21,7 @@ import com.vnk.smartcity.complaints.ViewComplaintsActivity;
 public class HomeFragment extends Fragment {
 
 
-    Button btnComplaint, btnWater, btnGarbage, btnRoad, btnViewComplaints, btnUpdateProfile;
+    Button btnComplaint, btnWater, btnGarbage, btnRoad, btnViewComplaints, btnUpdateProfile, btnGovtPlaces, btnemer;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -37,7 +38,19 @@ public class HomeFragment extends Fragment {
         btnRoad = v.findViewById(R.id.buttonRoad);
         btnViewComplaints = v.findViewById(R.id.buttonViewComplaints);
         btnUpdateProfile = v.findViewById(R.id.buttonUpdateProfile);
+        btnGovtPlaces = v.findViewById(R.id.buttonPlaces);
+        btnemer = v.findViewById(R.id.buttonEmer);
+        btnemer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new EmergencyMainFragment();
 
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction()
+                        .addToBackStack("emer");
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
+            }
+        });
         btnComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,6 +121,12 @@ public class HomeFragment extends Fragment {
                         .addToBackStack("EditProfile");
                 ft.replace(R.id.content_frame, fragment);
                 ft.commit();
+            }
+        });
+        btnGovtPlaces.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), GovtOfficeActivity.class));
             }
         });
         return v;

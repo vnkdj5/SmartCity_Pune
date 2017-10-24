@@ -1,0 +1,64 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    tools:context="com.vnk.smartcity.EmergencyMainFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageVBanner"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:background="@color/cardview_dark_background"
+                android:elevation="30dp"
+                app:srcCompat="@mipmap/banner2" />
+
+            <Button
+                android:id="@+id/ebutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color1"
+                android:drawableLeft="@drawable/ic_menu_settings"
+                android:drawablePadding="10dp"
+                android:padding="16dp"
+                android:text="Maharashtra Police" />
+
+            <Button
+                android:id="@+id/ebutton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color2"
+                android:drawableLeft="@drawable/ic_menu_settings"
+                android:drawablePadding="10dp"
+                android:padding="16dp"
+                android:text="Hospitals" />
+
+            <Button
+                android:id="@+id/ebutton3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color3"
+                android:drawableLeft="@drawable/ic_menu_settings"
+                android:drawablePadding="10dp"
+                android:padding="16dp"
+                android:text="Fire Brigade" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

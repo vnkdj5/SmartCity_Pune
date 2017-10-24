@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="offices">
+        <item>PMC Office, Shivaji Nagar</item>
+        <item>PMC Office, Sangamwadi</item>
+        <item>PMC Ward Office</item>
+        <item>Environmental Lab</item>
+        <item>Yerawada Ward Office</item>
+        <item>PWD Office</item>
+        <item>Collector Office</item>
+        <item>RTO Office</item>
+        <item>PMC Water Complaint Contonment Board</item>
+        <item>PCMC Water Supply and Drainage</item>
+    </string-array>
+
+    <string-array name="office_address">
+        <item>Shivaji Road, Opposite Mangala \nMultiplex, Behind Corporation PMT Bus \nStand, Shivaji Nagar, Pune - 411005.</item>
+        <item>Sangamvadi, Pune - 411001.</item>
+        <item>Kshetriya Karyalay, Near Bhaji Mandai, \nHadapsar, Pune, Maharashtra 411028.</item>
+        <item>Behind Indulal Complex, Lal Bahadur \nShastri Road, Navi Peth, Pune - 411004.</item>
+        <item>Nagar Road, Near Aaga Khan Palace, \nYerwada, Pune - 411006.</item>
+        <item>Central Building, Camp, Pune - 411001.</item>
+        <item>New Council Hall Building, Vidhan \nBhavan, Station Road, Next to INOX, \nPune - 411001.</item>
+        <item>38, Dr. Ambedkar Road, Near Sangam \nBridge, Pune - 411001.</item>
+        <item>17, Karriappa Marg, Khadki, Near \nCourt, Pune - 411003.</item>
+        <item>1st Floor, Main Building, Pimpri \nChinchwad Municipal Corporation, \nPimpri, Pune - 411018.</item>
+    </string-array>
+
+    <string-array name="office_contacts">
+        <item>020 2550 1000</item>
+        <item>020 2550 1061</item>
+        <item>020 2682 1092</item>
+        <item>020 2453 1454</item>
+        <item>020 2453 1454</item>
+        <item>020 2612 6258</item>
+        <item>020 2612 2114</item>
+        <item>020 2605 8090</item>
+        <item>020 2636 1598</item>
+        <item>020 6733 3333</item>
+    </string-array>
+
+    <string-array name="office_times">
+        <item>08:00 A.M. To 08:00 P.M.</item>
+        <item>09:00 A.M. To 06:00 P.M.</item>
+        <item>09:00 A.M. To 06:00 P.M.</item>
+        <item>09:00 A.M. To 06:00 P.M.</item>
+        <item>10:00 A.M. To 06:00 P.M.</item>
+        <item>10:00 A.M. To 06:00 P.M.</item>
+        <item>10:00 A.M. To 05:45 P.M.</item>
+        <item>10:45 A.M. To 05:00 P.M.</item>
+        <item>10:00 A.M. To 05:00 P.M.</item>
+        <item>10:00 A.M. To 05:45 P.M.</item>
+    </string-array>
+
+    <string-array name="latitudes">
+        <item>18.524071</item>
+        <item>18.529603</item>
+        <item>18.500419</item>
+        <item>18.506249</item>
+        <item>18.552721</item>
+        <item>18.524844</item>
+        <item>18.525754</item>
+        <item>18.530470</item>
+        <item>18.557833</item>
+        <item>18.669169</item>
+    </string-array>
+
+    <string-array name="longitudes">
+        <item>73.853166</item>
+        <item>73.876015</item>
+        <item>73.934007</item>
+        <item>73.843383</item>
+        <item>73.889645</item>
+        <item>73.872183</item>
+        <item>73.879583</item>
+        <item>73.863612</item>
+        <item>73.849837</item>
+        <item>73.792829</item>
+    </string-array>
+
+    <string-array name="policeNames">
+        <item>Emergency/Control Room</item>
+        <item>Exchange 1</item>
+        <item>Exchange 2</item>
+        <item>Highway Traffic Police Enquiry</item>
+    </string-array>
+    <string-array name="policeNumber">
+        <item>100</item>
+        <item>02026122202</item>
+        <item>02025532041</item>
+        <item>02025532041</item>
+    </string-array>
+    <string-array name="hospitalNames">
+        <item>Aditya Birla Memorial Hospital</item>
+        <item>ESi Corp., Swargate</item>
+        <item>Gandhi Hosppital,Hadapsar</item>
+        <item>Jahangir Hospital</item>
+        <item>Matoshree Madanbhai Dhariwal Hospital</item>
+        <item>Ruby Hall Clinic</item>
+        <item>Sassoon General Hospital</item>
+        <item>Surya Hospital</item>
+    </string-array>
+    <string-array name="hopsitalNumber">
+        <item>02030717500</item>
+        <item>9423574056</item>
+        <item>8237875037</item>
+        <item>02026050550</item>
+        <item>9960172656</item>
+        <item>02026123391</item>
+        <item>02026128000</item>
+        <item>02024578442</item>
+    </string-array>
+    <string-array name="fireNames">
+        <item>Fire Brigade</item>
+    </string-array>
+    <string-array name="fireNumber">
+        <item>101</item>
+    </string-array>
+</resources>
